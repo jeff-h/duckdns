@@ -1,0 +1,3 @@
+[submodule "AXStatusItemPopup"]
+	path = AXStatusItemPopup
+	url = https://github.com/aschuch/AXStatusItemPopup.git

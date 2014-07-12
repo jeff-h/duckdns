@@ -12,6 +12,9 @@
 		6F1FF7BD1970F47E00B345EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1FF7BC1970F47E00B345EF /* Images.xcassets */; };
 		6F1FF7C01970F47E00B345EF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F1FF7BE1970F47E00B345EF /* MainMenu.xib */; };
 		6F1FF7CC1970F47F00B345EF /* DuckDNSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7CB1970F47F00B345EF /* DuckDNSTests.swift */; };
+		6F1FF7DB1970F58C00B345EF /* AXStatusItemPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7DA1970F58C00B345EF /* AXStatusItemPopup.m */; };
+		6F1FF7DE1970FABB00B345EF /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7DD1970FABB00B345EF /* ContentViewController.swift */; };
+		6F1FF7E0197101EE00B345EF /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F1FF7DF197101EE00B345EF /* ContentViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,11 @@
 		6F1FF7C51970F47F00B345EF /* DuckDNSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DuckDNSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F1FF7CA1970F47F00B345EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F1FF7CB1970F47F00B345EF /* DuckDNSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuckDNSTests.swift; sourceTree = "<group>"; };
+		6F1FF7D91970F58C00B345EF /* AXStatusItemPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AXStatusItemPopup.h; path = AXStatusItemPopup/AXStatusItemPopup/AXStatusItemPopup.h; sourceTree = SOURCE_ROOT; };
+		6F1FF7DA1970F58C00B345EF /* AXStatusItemPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AXStatusItemPopup.m; path = AXStatusItemPopup/AXStatusItemPopup/AXStatusItemPopup.m; sourceTree = SOURCE_ROOT; };
+		6F1FF7DC1970F6F400B345EF /* DuckDNS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DuckDNS-Bridging-Header.h"; sourceTree = "<group>"; };
+		6F1FF7DD1970FABB00B345EF /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		6F1FF7DF197101EE00B345EF /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,10 +83,15 @@
 		6F1FF7B51970F47E00B345EF /* DuckDNS */ = {
 			isa = PBXGroup;
 			children = (
+				6F1FF7D91970F58C00B345EF /* AXStatusItemPopup.h */,
+				6F1FF7DA1970F58C00B345EF /* AXStatusItemPopup.m */,
 				6F1FF7BA1970F47E00B345EF /* AppDelegate.swift */,
 				6F1FF7BC1970F47E00B345EF /* Images.xcassets */,
 				6F1FF7BE1970F47E00B345EF /* MainMenu.xib */,
+				6F1FF7DD1970FABB00B345EF /* ContentViewController.swift */,
+				6F1FF7DF197101EE00B345EF /* ContentViewController.xib */,
 				6F1FF7B61970F47E00B345EF /* Supporting Files */,
+				6F1FF7DC1970F6F400B345EF /* DuckDNS-Bridging-Header.h */,
 			);
 			path = DuckDNS;
 			sourceTree = "<group>";
@@ -191,6 +204,7 @@
 			files = (
 				6F1FF7BD1970F47E00B345EF /* Images.xcassets in Resources */,
 				6F1FF7C01970F47E00B345EF /* MainMenu.xib in Resources */,
+				6F1FF7E0197101EE00B345EF /* ContentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +222,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F1FF7DE1970FABB00B345EF /* ContentViewController.swift in Sources */,
 				6F1FF7BB1970F47E00B345EF /* AppDelegate.swift in Sources */,
+				6F1FF7DB1970F58C00B345EF /* AXStatusItemPopup.m in Sources */,
 				6F1FF7B91970F47E00B345EF /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +344,7 @@
 				INFOPLIST_FILE = DuckDNS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DuckDNS/DuckDNS-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -339,6 +356,7 @@
 				INFOPLIST_FILE = DuckDNS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DuckDNS/DuckDNS-Bridging-Header.h";
 			};
 			name = Release;
 		};
