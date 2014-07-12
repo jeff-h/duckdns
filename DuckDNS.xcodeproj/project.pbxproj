@@ -1,0 +1,412 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6F1FF7B91970F47E00B345EF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7B81970F47E00B345EF /* main.swift */; };
+		6F1FF7BB1970F47E00B345EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7BA1970F47E00B345EF /* AppDelegate.swift */; };
+		6F1FF7BD1970F47E00B345EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1FF7BC1970F47E00B345EF /* Images.xcassets */; };
+		6F1FF7C01970F47E00B345EF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F1FF7BE1970F47E00B345EF /* MainMenu.xib */; };
+		6F1FF7CC1970F47F00B345EF /* DuckDNSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7CB1970F47F00B345EF /* DuckDNSTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6F1FF7C61970F47F00B345EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6F1FF7AB1970F47E00B345EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6F1FF7B21970F47E00B345EF;
+			remoteInfo = DuckDNS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6F1FF7B31970F47E00B345EF /* DuckDNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DuckDNS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F1FF7B71970F47E00B345EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F1FF7B81970F47E00B345EF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		6F1FF7BA1970F47E00B345EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6F1FF7BC1970F47E00B345EF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6F1FF7BF1970F47E00B345EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		6F1FF7C51970F47F00B345EF /* DuckDNSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DuckDNSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F1FF7CA1970F47F00B345EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F1FF7CB1970F47F00B345EF /* DuckDNSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuckDNSTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6F1FF7B01970F47E00B345EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F1FF7C21970F47F00B345EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6F1FF7AA1970F47E00B345EF = {
+			isa = PBXGroup;
+			children = (
+				6F1FF7B51970F47E00B345EF /* DuckDNS */,
+				6F1FF7C81970F47F00B345EF /* DuckDNSTests */,
+				6F1FF7B41970F47E00B345EF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6F1FF7B41970F47E00B345EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6F1FF7B31970F47E00B345EF /* DuckDNS.app */,
+				6F1FF7C51970F47F00B345EF /* DuckDNSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6F1FF7B51970F47E00B345EF /* DuckDNS */ = {
+			isa = PBXGroup;
+			children = (
+				6F1FF7BA1970F47E00B345EF /* AppDelegate.swift */,
+				6F1FF7BC1970F47E00B345EF /* Images.xcassets */,
+				6F1FF7BE1970F47E00B345EF /* MainMenu.xib */,
+				6F1FF7B61970F47E00B345EF /* Supporting Files */,
+			);
+			path = DuckDNS;
+			sourceTree = "<group>";
+		};
+		6F1FF7B61970F47E00B345EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6F1FF7B71970F47E00B345EF /* Info.plist */,
+				6F1FF7B81970F47E00B345EF /* main.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6F1FF7C81970F47F00B345EF /* DuckDNSTests */ = {
+			isa = PBXGroup;
+			children = (
+				6F1FF7CB1970F47F00B345EF /* DuckDNSTests.swift */,
+				6F1FF7C91970F47F00B345EF /* Supporting Files */,
+			);
+			path = DuckDNSTests;
+			sourceTree = "<group>";
+		};
+		6F1FF7C91970F47F00B345EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6F1FF7CA1970F47F00B345EF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6F1FF7B21970F47E00B345EF /* DuckDNS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F1FF7CF1970F47F00B345EF /* Build configuration list for PBXNativeTarget "DuckDNS" */;
+			buildPhases = (
+				6F1FF7AF1970F47E00B345EF /* Sources */,
+				6F1FF7B01970F47E00B345EF /* Frameworks */,
+				6F1FF7B11970F47E00B345EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DuckDNS;
+			productName = DuckDNS;
+			productReference = 6F1FF7B31970F47E00B345EF /* DuckDNS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6F1FF7C41970F47F00B345EF /* DuckDNSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F1FF7D21970F47F00B345EF /* Build configuration list for PBXNativeTarget "DuckDNSTests" */;
+			buildPhases = (
+				6F1FF7C11970F47F00B345EF /* Sources */,
+				6F1FF7C21970F47F00B345EF /* Frameworks */,
+				6F1FF7C31970F47F00B345EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6F1FF7C71970F47F00B345EF /* PBXTargetDependency */,
+			);
+			name = DuckDNSTests;
+			productName = DuckDNSTests;
+			productReference = 6F1FF7C51970F47F00B345EF /* DuckDNSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6F1FF7AB1970F47E00B345EF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = Marmaladesoul;
+				TargetAttributes = {
+					6F1FF7B21970F47E00B345EF = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					6F1FF7C41970F47F00B345EF = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 6F1FF7B21970F47E00B345EF;
+					};
+				};
+			};
+			buildConfigurationList = 6F1FF7AE1970F47E00B345EF /* Build configuration list for PBXProject "DuckDNS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6F1FF7AA1970F47E00B345EF;
+			productRefGroup = 6F1FF7B41970F47E00B345EF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6F1FF7B21970F47E00B345EF /* DuckDNS */,
+				6F1FF7C41970F47F00B345EF /* DuckDNSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6F1FF7B11970F47E00B345EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F1FF7BD1970F47E00B345EF /* Images.xcassets in Resources */,
+				6F1FF7C01970F47E00B345EF /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F1FF7C31970F47F00B345EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6F1FF7AF1970F47E00B345EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F1FF7BB1970F47E00B345EF /* AppDelegate.swift in Sources */,
+				6F1FF7B91970F47E00B345EF /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F1FF7C11970F47F00B345EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F1FF7CC1970F47F00B345EF /* DuckDNSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6F1FF7C71970F47F00B345EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6F1FF7B21970F47E00B345EF /* DuckDNS */;
+			targetProxy = 6F1FF7C61970F47F00B345EF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6F1FF7BE1970F47E00B345EF /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6F1FF7BF1970F47E00B345EF /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6F1FF7CD1970F47F00B345EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6F1FF7CE1970F47F00B345EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6F1FF7D01970F47F00B345EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DuckDNS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6F1FF7D11970F47F00B345EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DuckDNS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6F1FF7D31970F47F00B345EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DuckDNS.app/Contents/MacOS/DuckDNS";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DuckDNSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		6F1FF7D41970F47F00B345EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DuckDNS.app/Contents/MacOS/DuckDNS";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DuckDNSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6F1FF7AE1970F47E00B345EF /* Build configuration list for PBXProject "DuckDNS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F1FF7CD1970F47F00B345EF /* Debug */,
+				6F1FF7CE1970F47F00B345EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6F1FF7CF1970F47F00B345EF /* Build configuration list for PBXNativeTarget "DuckDNS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F1FF7D01970F47F00B345EF /* Debug */,
+				6F1FF7D11970F47F00B345EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6F1FF7D21970F47F00B345EF /* Build configuration list for PBXNativeTarget "DuckDNSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F1FF7D31970F47F00B345EF /* Debug */,
+				6F1FF7D41970F47F00B345EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6F1FF7AB1970F47E00B345EF /* Project object */;
+}
