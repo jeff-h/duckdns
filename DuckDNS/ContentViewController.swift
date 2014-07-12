@@ -10,15 +10,14 @@ import Foundation
 
 class ContentViewController: NSViewController {
     
-    var statusItemPopup: AXStatusItemPopup
+    var statusItemPopup: AXStatusItemPopup?
     
+//    init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+//        
+//        super.init()
+//    }
+
     @IBAction func CloseButtonAction(sender: AnyObject) {
-        
-        statusItemPopup.hidePopover()
-    }
-    
-    init(myStatusItemPopup: AXStatusItemPopup) {
-        statusItemPopup = myStatusItemPopup;
-        super.init()
+        statusItemPopup?.hidePopover()
     }
 }

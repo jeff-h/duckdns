@@ -83,13 +83,13 @@
 		6F1FF7B51970F47E00B345EF /* DuckDNS */ = {
 			isa = PBXGroup;
 			children = (
-				6F1FF7D91970F58C00B345EF /* AXStatusItemPopup.h */,
-				6F1FF7DA1970F58C00B345EF /* AXStatusItemPopup.m */,
 				6F1FF7BA1970F47E00B345EF /* AppDelegate.swift */,
 				6F1FF7BC1970F47E00B345EF /* Images.xcassets */,
 				6F1FF7BE1970F47E00B345EF /* MainMenu.xib */,
 				6F1FF7DD1970FABB00B345EF /* ContentViewController.swift */,
 				6F1FF7DF197101EE00B345EF /* ContentViewController.xib */,
+				6F1FF7D91970F58C00B345EF /* AXStatusItemPopup.h */,
+				6F1FF7DA1970F58C00B345EF /* AXStatusItemPopup.m */,
 				6F1FF7B61970F47E00B345EF /* Supporting Files */,
 				6F1FF7DC1970F6F400B345EF /* DuckDNS-Bridging-Header.h */,
 			);

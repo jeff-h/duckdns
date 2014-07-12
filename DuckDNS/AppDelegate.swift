@@ -17,16 +17,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var showPopupBtn: NSButton
 
     @IBAction func showPopupBtnAction(sender: NSButton) {
-        println("Heyhey")
-     //   [_statusItemPopup showPopoverAnimated:YES];
-
-        
+        statusItemPopup?.showPopoverAnimated(true)
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
         
-        statusItemPopup = AXStatusItemPopup();
+        // init the content view controller
+        // which will be shown inside the popover.
+        var myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle())
+        
+        // init the status item popup
+        var image = NSImage(named: "cloud")
+        var alternateImage = NSImage(named: "cloudgrey")
+
+        statusItemPopup = AXStatusItemPopup(viewController: myContentViewController, image: image, alternateImage: alternateImage);
+
+        // Set the popover to the contentview to e.g. hide it from there.
+        myContentViewController.statusItemPopup = statusItemPopup;
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {
