@@ -11,14 +11,6 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     var statusItemPopup: AXStatusItemPopup?
-                            
-    @IBOutlet var window: NSWindow
-
-    @IBOutlet var showPopupBtn: NSButton
-
-    @IBAction func showPopupBtnAction(sender: NSButton) {
-        statusItemPopup?.showPopoverAnimated(true)
-    }
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
@@ -35,6 +27,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Set the popover to the contentview to e.g. hide it from there.
         myContentViewController.statusItemPopup = statusItemPopup;
+        
+        // Show the popup, nicely animated.
+        statusItemPopup?.showPopoverAnimated(true)
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {
