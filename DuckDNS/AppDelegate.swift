@@ -19,6 +19,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // which will be shown inside the popover.
         var myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle())
         
+        //https://www.duckdns.org/update?domains=dev1mmls&token=b98212c1-6a87-4f8f-82b0-a08c6ec27d4a&ip=
+        
         // init the status item popup
         var image = NSImage(named: "cloud")
         var alternateImage = NSImage(named: "cloudgrey")
