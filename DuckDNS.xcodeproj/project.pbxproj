@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F0B81C619722F26008EC434 /* CredentialsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B81C519722F26008EC434 /* CredentialsModel.swift */; };
 		6F1FF7B91970F47E00B345EF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7B81970F47E00B345EF /* main.swift */; };
 		6F1FF7BB1970F47E00B345EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7BA1970F47E00B345EF /* AppDelegate.swift */; };
 		6F1FF7BD1970F47E00B345EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1FF7BC1970F47E00B345EF /* Images.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F0B81C519722F26008EC434 /* CredentialsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsModel.swift; sourceTree = "<group>"; };
 		6F1FF7B31970F47E00B345EF /* DuckDNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DuckDNS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F1FF7B71970F47E00B345EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F1FF7B81970F47E00B345EF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				6F1FF7BA1970F47E00B345EF /* AppDelegate.swift */,
 				6F1FF7BC1970F47E00B345EF /* Images.xcassets */,
 				6F1FF7BE1970F47E00B345EF /* MainMenu.xib */,
+				6F0B81C519722F26008EC434 /* CredentialsModel.swift */,
 				6F1FF7E119710EE800B345EF /* ContentViewController */,
 				6F1FF7E219710F0000B345EF /* AXStatusItemPopup */,
 				6F1FF7B61970F47E00B345EF /* Supporting Files */,
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F0B81C619722F26008EC434 /* CredentialsModel.swift in Sources */,
 				6F1FF7DE1970FABB00B345EF /* ContentViewController.swift in Sources */,
 				6F1FF7BB1970F47E00B345EF /* AppDelegate.swift in Sources */,
 				6F1FF7DB1970F58C00B345EF /* AXStatusItemPopup.m in Sources */,
@@ -431,6 +435,7 @@
 				6F1FF7D11970F47F00B345EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6F1FF7D21970F47F00B345EF /* Build configuration list for PBXNativeTarget "DuckDNSTests" */ = {
 			isa = XCConfigurationList;
@@ -439,6 +444,7 @@
 				6F1FF7D41970F47F00B345EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -15,15 +15,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
         
+        // Init the model.
+        let myCredentialsModel = CredentialsModel()
+        
         // init the content view controller
         // which will be shown inside the popover.
-        var myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle())
+        let myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), creds: myCredentialsModel)
+        
+        myContentViewController.creds = myCredentialsModel
         
         //https://www.duckdns.org/update?domains=dev1mmls&token=b98212c1-6a87-4f8f-82b0-a08c6ec27d4a&ip=
         
         // init the status item popup
-        var image = NSImage(named: "cloud")
-        var alternateImage = NSImage(named: "cloudgrey")
+        let image = NSImage(named: "cloud")
+        let alternateImage = NSImage(named: "cloudgrey")
 
         statusItemPopup = AXStatusItemPopup(viewController: myContentViewController, image: image, alternateImage: alternateImage);
 
