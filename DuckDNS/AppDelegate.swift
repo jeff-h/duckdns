@@ -10,19 +10,25 @@ import Cocoa
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     
+    var userDefaults = NSUserDefaults()
+    
     var statusItemPopup: AXStatusItemPopup?
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
         
-        // Init the model.
-        let myCredentialsModel = CredentialsModel()
+        // Register some defaults for first-run.
+        let defaults = ["lastSentIP":"", "domain":"", "token": ""]
+        userDefaults.registerDefaults(defaults)
+        
+        // Init the models.
+        let duckDNSModel = DuckDNSModel()
         
         // init the content view controller
         // which will be shown inside the popover.
-        let myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), creds: myCredentialsModel)
+        let myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), duckDNSModel: duckDNSModel)
         
-        myContentViewController.creds = myCredentialsModel
+        //myContentViewController.duckDNSModel = duckDNSModel
         
         //https://www.duckdns.org/update?domains=dev1mmls&token=b98212c1-6a87-4f8f-82b0-a08c6ec27d4a&ip=
         

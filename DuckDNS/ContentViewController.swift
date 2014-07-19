@@ -9,32 +9,58 @@
 import Foundation
 
 class ContentViewController: NSViewController {
+    let app = NSApplication.sharedApplication().delegate as AppDelegate
     
     var statusItemPopup: AXStatusItemPopup?
-    var subdomain: String?
-    var token: String?
-    var creds: CredentialsModel?
+    var duckDNSModel: DuckDNSModel
     
     @IBOutlet var StatusLabel: NSTextField
-    @IBOutlet var SubdomainTextField: NSTextField
+    @IBOutlet var DomainTextField: NSTextField
     @IBOutlet var TokenTextField: NSTextField
-    
-    @IBAction func SubdomainTextFieldAction(sender: AnyObject) {
-        updateCredentials("subdomain", value: SubdomainTextField.stringValue)
+
+    @IBAction func DomainTextFieldAction(sender: AnyObject) {
+        // duckDNSModel.updateCredentials()
     }
     
     @IBAction func TokenTextFieldAction(sender: AnyObject) {
-        updateCredentials("token", value: TokenTextField.stringValue)
+        // updateCredentials()
     }
     
-    init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!, creds: CredentialsModel) {
-        self.creds = creds
-        
+    @IBAction func OKButtonClicked(sender: AnyObject) {
+        statusItemPopup?.hidePopover()
+    }
+    
+    init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!, duckDNSModel: DuckDNSModel) {
+        self.duckDNSModel = duckDNSModel
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        // Watch for changes to the defaults.
+        let options : NSKeyValueObservingOptions = .New | .Old | .Initial | .Prior
+        app.userDefaults.addObserver(self, forKeyPath: "success", options:options, context: nil)
     }
     
-    func updateCredentials(valueType: String, value: String) {
-        println(valueType)
-        println(value)
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.updateLabel()
     }
+    
+    func updateLabel() {
+        let lastSentIP = duckDNSModel.getLastSentIP()
+        
+        if !lastSentIP.isEmpty {
+            println("this lastSentIP is: " + lastSentIP)
+            StatusLabel.stringValue = "Set to " + lastSentIP + " on some date"
+        }
+    }
+    
+    override func observeValueForKeyPath(keyPath: String!,
+        ofObject object: AnyObject!,
+        change: [NSObject : AnyObject]!,
+        context: UnsafePointer<()>) {
+
+    
+        println("CHANGE OBSERVED: \(change)")
+    }
+
+
 }
