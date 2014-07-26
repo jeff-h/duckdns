@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="14A299l" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.7"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ContentViewController" customModule="DuckDNS" customModuleProvider="target">
             <connections>
-                <outlet property="ContentView" destination="c22-O7-iKe" id="cRa-87-Vf9"/>
-                <outlet property="DomainTextField" destination="YIu-x2-U1G" id="h4n-oc-sYz"/>
-                <outlet property="StatusLabel" destination="bSZ-ee-mUJ" id="ayh-NC-7dY"/>
-                <outlet property="SubdomainTextField" destination="YIu-x2-U1G" id="k3h-1K-JfF"/>
+                <outlet property="DomainTextField" destination="aNk-hU-bfE" id="qI9-7R-y6y"/>
+                <outlet property="StatusLabel" destination="bSZ-ee-mUJ" id="Vqc-jp-vOH"/>
                 <outlet property="TokenTextField" destination="aNk-hU-bfE" id="GEw-tD-fdM"/>
                 <outlet property="view" destination="c22-O7-iKe" id="QPy-cN-4zi"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="dMj-xg-vme"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="278" height="168"/>
+            <rect key="frame" x="0.0" y="0.0" width="361" height="168"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YIu-x2-U1G">
@@ -29,13 +27,9 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <action selector="DomainTextFieldAction:" target="-2" id="iMQ-Vq-pTE"/>
-                        <binding destination="dMj-xg-vme" name="value" keyPath="values.domain" id="qPq-mt-0CR">
-                            <dictionary key="options">
-                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                <bool key="NSConditionallySetsEditable" value="NO"/>
-                            </dictionary>
-                        </binding>
+                        <action selector="DomainTextFieldAction:" target="-2" id="fbE-uu-Qbl"/>
+                        <binding destination="dMj-xg-vme" name="value" keyPath="values.domain" id="cZk-J0-OEV"/>
+                        <outlet property="delegate" destination="-2" id="Zcd-ZM-HwX"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vg5-1o-yhi">
@@ -55,7 +49,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNk-hU-bfE">
-                    <rect key="frame" x="72" y="94" width="186" height="22"/>
+                    <rect key="frame" x="72" y="94" width="269" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="bdd-aC-V8z">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -75,7 +69,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bSZ-ee-mUJ">
-                    <rect key="frame" x="70" y="45" width="190" height="41"/>
+                    <rect key="frame" x="70" y="45" width="273" height="41"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Please enter your Duck DNS subdomain and token." id="iOT-WG-YUz">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -83,7 +77,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-6e-G89">
-                    <rect key="frame" x="205" y="13" width="59" height="32"/>
+                    <rect key="frame" x="288" y="13" width="59" height="32"/>
                     <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QVG-hW-NUD">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -96,7 +90,7 @@ DQ
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Wg-7J-IpS">
-                    <rect key="frame" x="123" y="13" width="82" height="32"/>
+                    <rect key="frame" x="206" y="13" width="82" height="32"/>
                     <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8oe-ud-eyg">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -106,7 +100,7 @@ DQ
                     </connections>
                 </button>
             </subviews>
-            <point key="canvasLocation" x="38" y="102"/>
+            <point key="canvasLocation" x="79.5" y="102"/>
         </customView>
     </objects>
 </document>

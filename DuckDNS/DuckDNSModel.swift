@@ -15,21 +15,13 @@ class DuckDNSModel: NSObject {
         super.init()
         
         // Watch for changes to specific defaults.
-        let options : NSKeyValueObservingOptions = .New | .Old | .Initial | .Prior
-        app.userDefaults.addObserver(self, forKeyPath: "domain", options:options, context: nil)
-        app.userDefaults.addObserver(self, forKeyPath: "token", options:options, context: nil)
+        let options : NSKeyValueObservingOptions = .New | .Old
+        
+        app.userDefaults.addObserver(self, forKeyPath: "domain", options: options, context: nil)
+        app.userDefaults.addObserver(self, forKeyPath: "token",  options: options, context: nil)
     }
     
-    func defaultsChanged(notification: NSNotification) {
-        let userDefaults = notification.object as NSUserDefaults
-        let domain = userDefaults.stringForKey("domain")
-        let token  = userDefaults.stringForKey("token")
-
-        if (!(domain.isEmpty || token.isEmpty)) {
-            self.sendIPChange(domain: domain, token: token)
-        }
-    }
-    
+    // We'll be notified whenever NSUserDefault's domain or token value changed.
     override func observeValueForKeyPath(keyPath: String!,
         ofObject object: AnyObject!,
         change: [NSObject : AnyObject]!,
@@ -41,13 +33,18 @@ class DuckDNSModel: NSObject {
         if (!(domain.isEmpty || token.isEmpty)) {
             self.sendIPChange(domain: domain, token: token)
         }
+        else {
+            self.setSuccess(false) // One of the values is empty.
+        }
     }
-
-    func sendToDuck(#domain: String, token: String) {
-        println("SEND TO DUCK!")
-        println(domain, token)
-        
-        self.sendIPChange(domain: domain, token: token)
+    
+    func setSuccess(success: Bool) {
+        println("success changed to \(success)")
+        self.app.userDefaults.setValue(success, forKey: "updateSucceeded")
+    }
+    
+    func getSuccess()->Bool {
+        return app.userDefaults.boolForKey("updateSucceeded")
     }
     
     func sendIPChange(#domain: String, token: String) {
@@ -56,10 +53,7 @@ class DuckDNSModel: NSObject {
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
             let resultString = (NSString(data: data, encoding: NSUTF8StringEncoding))
             let success = (resultString == "OK")
-            println("success was \(success)")
-            //        // Store the last sent IP value.
-            //        self.lastSentIP = self.userDefaults.stringForKey("lastSentIP")
-            self.app.userDefaults.setValue(success, forKey: "succeeded")
+            self.setSuccess(success)
         }
         task.resume()
     }

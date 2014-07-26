@@ -10,7 +10,7 @@ import Cocoa
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var userDefaults = NSUserDefaults()
+    var userDefaults = NSUserDefaults.standardUserDefaults()
     
     var statusItemPopup: AXStatusItemPopup?
     
@@ -18,9 +18,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         
         // Register some defaults for first-run.
-        let defaults = ["lastSentIP":"", "domain":"", "token": ""]
+        let defaults = [
+            "lastSentIP":"",
+            "domain":"",
+            "token": "",
+            "updateSucceeded": false
+        ]
         userDefaults.registerDefaults(defaults)
-        
+                
         // Init the models.
         let duckDNSModel = DuckDNSModel()
         
