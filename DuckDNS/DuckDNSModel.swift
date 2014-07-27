@@ -31,7 +31,7 @@ class DuckDNSModel: NSObject {
         let token  = app.userDefaults.stringForKey("token")
         
         if (!(domain.isEmpty || token.isEmpty)) {
-            self.sendIPChange(domain: domain, token: token)
+            self.sendIPChange()
         }
         else {
             self.setSuccess(false) // One of the values is empty.
@@ -47,7 +47,9 @@ class DuckDNSModel: NSObject {
         return app.userDefaults.boolForKey("updateSucceeded")
     }
     
-    func sendIPChange(#domain: String, token: String) {
+    func sendIPChange() {
+        let domain = app.userDefaults.stringForKey("domain")
+        let token  = app.userDefaults.stringForKey("token")
         let url = NSURL(string: "https://www.duckdns.org/update?domains=" + domain + "&token=" + token + "&ip=")
 
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in

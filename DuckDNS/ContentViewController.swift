@@ -38,8 +38,8 @@ class ContentViewController: NSViewController {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        // Watch for changes to the defaults.
-        let options : NSKeyValueObservingOptions = .New | .Old | .Initial
+        // Watch for changes to the "updateSucceeded" default.
+        let options : NSKeyValueObservingOptions = .New | .Old
         app.userDefaults.addObserver(self, forKeyPath: "updateSucceeded", options:options, context: nil)
 
         self.updateLabel()
@@ -62,12 +62,27 @@ class ContentViewController: NSViewController {
     
     // The value for updateSucceeded was changed, most likely by the DuckDNS
     // model.
-    override func observeValueForKeyPath(keyPath: String!,
+    override func observeValueForKeyPath(
+        keyPath: String!,
         ofObject object: AnyObject!,
         change: [NSObject : AnyObject]!,
         context: UnsafePointer<()>) {
-
+    
+        var body: String
+        
         self.updateLabel();
+        
+        println("here:")
+        println(change)
+        
+        if change["new"]?.boolValue == true {
+            body = "Duck DNS was successfully updated."
+        }
+        else {
+            body = "Duck DNS update failed."
+        }
+        
+        app.sendNotification(title: "Duck DNS", body: body)
     }
 
 }

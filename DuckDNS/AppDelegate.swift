@@ -8,9 +8,12 @@
 
 import Cocoa
 
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate:  NSObject,
+                    NSApplicationDelegate,
+                    NSUserNotificationCenterDelegate {
     
     var userDefaults = NSUserDefaults.standardUserDefaults()
+    var userNotifications = NSUserNotificationCenter.defaultUserNotificationCenter()
     
     var statusItemPopup: AXStatusItemPopup?
     
@@ -33,9 +36,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // which will be shown inside the popover.
         let myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), duckDNSModel: duckDNSModel)
         
-        //myContentViewController.duckDNSModel = duckDNSModel
-        
-        //https://www.duckdns.org/update?domains=dev1mmls&token=b98212c1-6a87-4f8f-82b0-a08c6ec27d4a&ip=
+        // On every app first run, update Duck DNS.
+        duckDNSModel.sendIPChange()
         
         // init the status item popup
         let image = NSImage(named: "cloud")
@@ -48,12 +50,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Show the popup, nicely animated.
         statusItemPopup?.showPopoverAnimated(true)
+        
+        // Set self as the user notifications centre delegate.
+        userNotifications.delegate = self        
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {
         // Insert code here to tear down your application
     }
 
-
+    func userNotificationCenter(center: NSUserNotificationCenter!, shouldPresentNotification notification: NSUserNotification!) -> Bool {
+        println("came into shouldPresentNotification")
+        // Return false, as we don't want to present notifications if this app
+        // is active.
+        return false
+    }
+    
+    func sendNotification(#title: String, body: String) {
+        var notification = NSUserNotification()
+        
+        notification.title = title
+        notification.informativeText = body;
+        notification.soundName = NSUserNotificationDefaultSoundName
+        
+        userNotifications.deliverNotification(notification)
+    }
 }
 
