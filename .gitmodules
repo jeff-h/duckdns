@@ -1,3 +1,6 @@
 [submodule "AXStatusItemPopup"]
 	path = AXStatusItemPopup
 	url = https://github.com/jeff-h/AXStatusItemPopup.git
+[submodule "Reachability"]
+	path = Reachability
+	url = https://github.com/tonymillion/Reachability.git

@@ -15,6 +15,7 @@
 		6F1FF7DB1970F58C00B345EF /* AXStatusItemPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7DA1970F58C00B345EF /* AXStatusItemPopup.m */; };
 		6F1FF7DE1970FABB00B345EF /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7DD1970FABB00B345EF /* ContentViewController.swift */; };
 		6F1FF7E0197101EE00B345EF /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F1FF7DF197101EE00B345EF /* ContentViewController.xib */; };
+		6F32A26B198796D2007AABE9 /* Reachability in Resources */ = {isa = PBXBuildFile; fileRef = 6F32A26A198796D2007AABE9 /* Reachability */; };
 		6F6CF756197248AC00CE766E /* DuckDNSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6CF755197248AC00CE766E /* DuckDNSModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		6F1FF7DC1970F6F400B345EF /* DuckDNS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DuckDNS-Bridging-Header.h"; sourceTree = "<group>"; };
 		6F1FF7DD1970FABB00B345EF /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		6F1FF7DF197101EE00B345EF /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
+		6F32A26A198796D2007AABE9 /* Reachability */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Reachability; path = ../Reachability; sourceTree = "<group>"; };
 		6F6CF755197248AC00CE766E /* DuckDNSModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuckDNSModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +93,7 @@
 				6F6CF757197248C100CE766E /* Models */,
 				6F1FF7E119710EE800B345EF /* ContentViewController */,
 				6F1FF7E219710F0000B345EF /* AXStatusItemPopup */,
+				6F32A26A198796D2007AABE9 /* Reachability */,
 				6F1FF7B61970F47E00B345EF /* Supporting Files */,
 				6F1FF7DC1970F6F400B345EF /* DuckDNS-Bridging-Header.h */,
 			);
@@ -230,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F1FF7BD1970F47E00B345EF /* Images.xcassets in Resources */,
+				6F32A26B198796D2007AABE9 /* Reachability in Resources */,
 				6F1FF7C01970F47E00B345EF /* MainMenu.xib in Resources */,
 				6F1FF7E0197101EE00B345EF /* ContentViewController.xib in Resources */,
 			);
