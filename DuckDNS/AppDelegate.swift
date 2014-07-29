@@ -45,11 +45,12 @@ class AppDelegate:  NSObject,
 
         statusItemPopup = AXStatusItemPopup(viewController: myContentViewController, image: image, alternateImage: alternateImage);
 
-        // Set the popover to the contentview to e.g. hide it from there.
+        // Give the contentview a reference to the popover to e.g. hide it from
+        // there.
         myContentViewController.statusItemPopup = statusItemPopup;
         
         // Show the popup, nicely animated.
-        statusItemPopup?.showPopoverAnimated(true)
+//        statusItemPopup?.showPopoverAnimated(true)
         
         // Set self as the user notifications centre delegate.
         userNotifications.delegate = self        
