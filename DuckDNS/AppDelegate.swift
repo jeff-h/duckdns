@@ -53,7 +53,9 @@ class AppDelegate:  NSObject,
 //        statusItemPopup?.showPopoverAnimated(true)
         
         // Set self as the user notifications centre delegate.
-        userNotifications.delegate = self        
+        userNotifications.delegate = self
+        
+        
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {

@@ -15,7 +15,8 @@
 		6F1FF7DB1970F58C00B345EF /* AXStatusItemPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7DA1970F58C00B345EF /* AXStatusItemPopup.m */; };
 		6F1FF7DE1970FABB00B345EF /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7DD1970FABB00B345EF /* ContentViewController.swift */; };
 		6F1FF7E0197101EE00B345EF /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F1FF7DF197101EE00B345EF /* ContentViewController.xib */; };
-		6F32A26B198796D2007AABE9 /* Reachability in Resources */ = {isa = PBXBuildFile; fileRef = 6F32A26A198796D2007AABE9 /* Reachability */; };
+		6F32A2701987A268007AABE9 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F32A26F1987A268007AABE9 /* Reachability.m */; };
+		6F32A2731989FABA007AABE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F32A2721989FABA007AABE9 /* SystemConfiguration.framework */; };
 		6F6CF756197248AC00CE766E /* DuckDNSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6CF755197248AC00CE766E /* DuckDNSModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +45,9 @@
 		6F1FF7DC1970F6F400B345EF /* DuckDNS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DuckDNS-Bridging-Header.h"; sourceTree = "<group>"; };
 		6F1FF7DD1970FABB00B345EF /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		6F1FF7DF197101EE00B345EF /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
-		6F32A26A198796D2007AABE9 /* Reachability */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Reachability; path = ../Reachability; sourceTree = "<group>"; };
+		6F32A26D1987A06F007AABE9 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Reachability/Reachability.h; sourceTree = "<group>"; };
+		6F32A26F1987A268007AABE9 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = SOURCE_ROOT; };
+		6F32A2721989FABA007AABE9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6F6CF755197248AC00CE766E /* DuckDNSModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuckDNSModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F32A2731989FABA007AABE9 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +73,7 @@
 		6F1FF7AA1970F47E00B345EF = {
 			isa = PBXGroup;
 			children = (
+				6F32A2721989FABA007AABE9 /* SystemConfiguration.framework */,
 				6F1FF7B51970F47E00B345EF /* DuckDNS */,
 				6F1FF7C81970F47F00B345EF /* DuckDNSTests */,
 				6F1FF7B41970F47E00B345EF /* Products */,
@@ -92,10 +97,10 @@
 				6F1FF7BE1970F47E00B345EF /* MainMenu.xib */,
 				6F6CF757197248C100CE766E /* Models */,
 				6F1FF7E119710EE800B345EF /* ContentViewController */,
-				6F1FF7E219710F0000B345EF /* AXStatusItemPopup */,
-				6F32A26A198796D2007AABE9 /* Reachability */,
-				6F1FF7B61970F47E00B345EF /* Supporting Files */,
 				6F1FF7DC1970F6F400B345EF /* DuckDNS-Bridging-Header.h */,
+				6F1FF7E219710F0000B345EF /* AXStatusItemPopup */,
+				6F32A2711987A283007AABE9 /* Reachability */,
+				6F1FF7B61970F47E00B345EF /* Supporting Files */,
 			);
 			path = DuckDNS;
 			sourceTree = "<group>";
@@ -142,6 +147,15 @@
 				6F1FF7DA1970F58C00B345EF /* AXStatusItemPopup.m */,
 			);
 			name = AXStatusItemPopup;
+			sourceTree = "<group>";
+		};
+		6F32A2711987A283007AABE9 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				6F32A26D1987A06F007AABE9 /* Reachability.h */,
+				6F32A26F1987A268007AABE9 /* Reachability.m */,
+			);
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 		6F6CF757197248C100CE766E /* Models */ = {
@@ -233,7 +247,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F1FF7BD1970F47E00B345EF /* Images.xcassets in Resources */,
-				6F32A26B198796D2007AABE9 /* Reachability in Resources */,
 				6F1FF7C01970F47E00B345EF /* MainMenu.xib in Resources */,
 				6F1FF7E0197101EE00B345EF /* ContentViewController.xib in Resources */,
 			);
@@ -257,6 +270,7 @@
 				6F1FF7BB1970F47E00B345EF /* AppDelegate.swift in Sources */,
 				6F1FF7DB1970F58C00B345EF /* AXStatusItemPopup.m in Sources */,
 				6F6CF756197248AC00CE766E /* DuckDNSModel.swift in Sources */,
+				6F32A2701987A268007AABE9 /* Reachability.m in Sources */,
 				6F1FF7B91970F47E00B345EF /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
