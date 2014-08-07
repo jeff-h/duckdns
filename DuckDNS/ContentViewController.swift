@@ -72,9 +72,6 @@ class ContentViewController: NSViewController {
         
         self.updateLabel();
         
-        println("here:")
-        println(change)
-        
         if change["new"]?.boolValue == true {
             body = "Duck DNS was successfully updated."
         }

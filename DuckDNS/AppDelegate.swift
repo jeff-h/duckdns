@@ -14,8 +14,9 @@ class AppDelegate:  NSObject,
     
     var userDefaults = NSUserDefaults.standardUserDefaults()
     var userNotifications = NSUserNotificationCenter.defaultUserNotificationCenter()
-    
+    var notificationCenter = NSNotificationCenter.defaultCenter()
     var statusItemPopup: AXStatusItemPopup?
+    var duckDNSModel: DuckDNSModel?
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
@@ -30,14 +31,14 @@ class AppDelegate:  NSObject,
         userDefaults.registerDefaults(defaults)
                 
         // Init the models.
-        let duckDNSModel = DuckDNSModel()
+        self.duckDNSModel = DuckDNSModel()
         
         // init the content view controller
         // which will be shown inside the popover.
-        let myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), duckDNSModel: duckDNSModel)
+        let myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), duckDNSModel: self.duckDNSModel!)
         
         // On every app first run, update Duck DNS.
-        duckDNSModel.sendIPChange()
+        self.duckDNSModel!.sendIPChange()
         
         // init the status item popup
         let image = NSImage(named: "cloud")
@@ -49,13 +50,27 @@ class AppDelegate:  NSObject,
         // there.
         myContentViewController.statusItemPopup = statusItemPopup;
         
-        // Show the popup, nicely animated.
-//        statusItemPopup?.showPopoverAnimated(true)
-        
         // Set self as the user notifications centre delegate.
         userNotifications.delegate = self
         
-        
+        var reachability = Reachability(hostName: "www.google.com")
+        reachability.startNotifier()
+
+        // Start watching Reachability now that it's started above, to avoid
+        // being notified when it first sees us online.
+        notificationCenter.addObserver(
+            self,
+            selector: "reachabilityChanged:",
+            name: kReachabilityChangedNotification,
+            object: nil
+        )
+    }
+    
+    func reachabilityChanged(notification: NSNotification) {
+        var reachability: Reachability = notification.object as Reachability
+        if (reachability.isReachable()) {
+            self.duckDNSModel!.sendIPChange()
+        }
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {
