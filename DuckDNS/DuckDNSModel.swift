@@ -19,22 +19,32 @@ class DuckDNSModel: NSObject {
         
         app.userDefaults.addObserver(self, forKeyPath: "domain", options: options, context: nil)
         app.userDefaults.addObserver(self, forKeyPath: "token",  options: options, context: nil)
+        app.userDefaults.addObserver(self, forKeyPath: "lastKnownIP",  options: options, context: nil)
     }
     
-    // We'll be notified whenever NSUserDefault's domain or token value changed.
+    // We'll be notified whenever NSUserDefault's domain, token or lastKnownIP
+    // values changed.
     override func observeValueForKeyPath(keyPath: String!,
         ofObject object: AnyObject!,
         change: [NSObject : AnyObject]!,
         context: UnsafePointer<()>) {
-            
-        let domain = app.userDefaults.stringForKey("domain")
-        let token  = app.userDefaults.stringForKey("token")
         
-        if (!(domain.isEmpty || token.isEmpty)) {
+        if (keyPath == "lastKnownIP") {
             self.sendIPChange()
         }
         else {
-            self.setSuccess(false) // One of the values is empty.
+            let domain = app.userDefaults.stringForKey("domain")
+            let token  = app.userDefaults.stringForKey("token")
+            
+            if (!(domain.isEmpty || token.isEmpty)) {
+                // Which will in turn trigger a Duck DNS update if the IP changes
+                // from the last known value.
+                self.setCurrentIP()
+                //self.sendIPChange()
+            }
+            else {
+                self.setSuccess(false) // One of the values is empty.
+            }
         }
     }
     
@@ -48,6 +58,10 @@ class DuckDNSModel: NSObject {
     }
     
     func sendIPChange() {
+        // First, check whether our IP has actually changed.
+        let lastKnownIP = app.userDefaults.stringForKey("lastKnownIP")
+        
+        
         let domain = app.userDefaults.stringForKey("domain")
         let token  = app.userDefaults.stringForKey("token")
         let url = NSURL(string: "https://www.duckdns.org/update?domains=" + domain + "&token=" + token + "&ip=")
@@ -60,14 +74,20 @@ class DuckDNSModel: NSObject {
         task.resume()
     }
     
-    func getLastSentIP() -> String {
-        var lastSentIp: String = NSUserDefaults().stringForKey("lastSentIP")
-        
-        //        if lastSentIp == nil {
-        //            lastSentIp = ""
-        //        }
-        
-        return lastSentIp
+    func getLastKnownIP() -> String {
+        return app.userDefaults.stringForKey("lastKnownIP")
+    }
+
+    // Get the public IP, and save it to user defaults. If it's changed,
+    // user defaults will trigger a change event.
+    func setCurrentIP() {
+        // Fetch public IP from http://echoip.net
+        let url = NSURL(string: "http://echoip.net")
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
+            let resultString = (NSString(data: data, encoding: NSUTF8StringEncoding))
+            self.app.userDefaults.setValue(resultString, forKey: "lastKnownIP")
+        }
+        task.resume()
     }
 
 }

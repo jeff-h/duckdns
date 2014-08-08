@@ -47,11 +47,11 @@ class ContentViewController: NSViewController {
     
     func updateLabel() {
         let success     = duckDNSModel.getSuccess()
-        //let lastSentIP  = duckDNSModel.getLastSentIP()
+        let lastKnownIP  = duckDNSModel.getLastKnownIP()
         var msg: String
         
         if success {
-            msg = "Successfully syncronised with DuckDNS."
+            msg = "Successfully synchronised with DuckDNS. Your public IP is now " + lastKnownIP
         }
         else {
             msg = "Syncronisation failed. Please check your domain and token."

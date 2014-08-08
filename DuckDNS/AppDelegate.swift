@@ -23,7 +23,7 @@ class AppDelegate:  NSObject,
         
         // Register some defaults for first-run.
         let defaults = [
-            "lastSentIP":"",
+            "lastKnownIP":"",
             "domain":"",
             "token": "",
             "updateSucceeded": false
@@ -38,7 +38,7 @@ class AppDelegate:  NSObject,
         let myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), duckDNSModel: self.duckDNSModel!)
         
         // On every app first run, update Duck DNS.
-        self.duckDNSModel!.sendIPChange()
+        self.duckDNSModel!.setCurrentIP()
         
         // init the status item popup
         let image = NSImage(named: "cloud")
@@ -69,7 +69,7 @@ class AppDelegate:  NSObject,
     func reachabilityChanged(notification: NSNotification) {
         var reachability: Reachability = notification.object as Reachability
         if (reachability.isReachable()) {
-            self.duckDNSModel!.sendIPChange()
+            self.duckDNSModel!.setCurrentIP()
         }
     }
 
