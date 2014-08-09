@@ -78,7 +78,6 @@ class AppDelegate:  NSObject,
     }
 
     func userNotificationCenter(center: NSUserNotificationCenter!, shouldPresentNotification notification: NSUserNotification!) -> Bool {
-        println("came into shouldPresentNotification")
         // Return false, as we don't want to present notifications if this app
         // is active.
         return false

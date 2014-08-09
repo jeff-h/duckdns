@@ -30,6 +30,7 @@ class DuckDNSModel: NSObject {
         context: UnsafePointer<()>) {
         
         if (keyPath == "lastKnownIP") {
+            println(change)
             self.sendIPChange()
         }
         else {
@@ -49,7 +50,6 @@ class DuckDNSModel: NSObject {
     }
     
     func setSuccess(success: Bool) {
-        println("success changed to \(success)")
         self.app.userDefaults.setValue(success, forKey: "updateSucceeded")
     }
     

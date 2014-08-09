@@ -42,22 +42,8 @@ class ContentViewController: NSViewController {
         let options : NSKeyValueObservingOptions = .New | .Old
         app.userDefaults.addObserver(self, forKeyPath: "updateSucceeded", options:options, context: nil)
 
-        self.updateLabel()
-    }
-    
-    func updateLabel() {
-        let success     = duckDNSModel.getSuccess()
-        let lastKnownIP  = duckDNSModel.getLastKnownIP()
-        var msg: String
-        
-        if success {
-            msg = "Successfully synchronised with DuckDNS. Your public IP is now " + lastKnownIP
-        }
-        else {
-            msg = "Syncronisation failed. Please check your domain and token."
-        }
-        
-        self.StatusLabel!.stringValue = msg
+        println("came via awakeFromNib")
+        self.updateLabel(alsoNotify: false)
     }
     
     // The value for updateSucceeded was changed, most likely by the DuckDNS
@@ -68,18 +54,26 @@ class ContentViewController: NSViewController {
         change: [NSObject : AnyObject]!,
         context: UnsafePointer<()>) {
     
-        var body: String
-        
-        self.updateLabel();
-        
-        if change["new"]?.boolValue == true {
-            body = "Duck DNS was successfully updated."
-        }
-        else {
-            body = "Duck DNS update failed."
-        }
-        
-        app.sendNotification(title: "Duck DNS", body: body)
+        println("came via observeValueForKeyPath")
+        self.updateLabel(alsoNotify: true);
     }
 
+    func updateLabel(#alsoNotify: Bool) {
+        let success     = duckDNSModel.getSuccess()
+        let lastKnownIP = duckDNSModel.getLastKnownIP()
+        var msg: String
+        
+        if success {
+            msg = "Successfully synchronised with DuckDNS. Your public IP is now " + lastKnownIP
+        }
+        else {
+            msg = "Syncronisation failed. Please check your domain and token."
+        }
+        
+        self.StatusLabel!.stringValue = msg
+        
+        if (alsoNotify) {
+            app.sendNotification(title: "Duck DNS", body: msg)
+        }
+    }
 }
