@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F16B34E1995FF44002B3B31 /* WelcomeWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F16B34D1995FF44002B3B31 /* WelcomeWindowView.xib */; };
+		6F16B3511995FF91002B3B31 /* WelcomeWindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F16B3501995FF91002B3B31 /* WelcomeWindowViewController.swift */; };
 		6F1FF7B91970F47E00B345EF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7B81970F47E00B345EF /* main.swift */; };
 		6F1FF7BB1970F47E00B345EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF7BA1970F47E00B345EF /* AppDelegate.swift */; };
 		6F1FF7BD1970F47E00B345EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1FF7BC1970F47E00B345EF /* Images.xcassets */; };
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F16B34D1995FF44002B3B31 /* WelcomeWindowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeWindowView.xib; sourceTree = "<group>"; };
+		6F16B3501995FF91002B3B31 /* WelcomeWindowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeWindowViewController.swift; sourceTree = "<group>"; };
 		6F1FF7B31970F47E00B345EF /* DuckDNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DuckDNS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F1FF7B71970F47E00B345EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F1FF7B81970F47E00B345EF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -70,6 +74,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F16B34F1995FF66002B3B31 /* WelcomeView */ = {
+			isa = PBXGroup;
+			children = (
+				6F16B34D1995FF44002B3B31 /* WelcomeWindowView.xib */,
+				6F16B3501995FF91002B3B31 /* WelcomeWindowViewController.swift */,
+			);
+			name = WelcomeView;
+			sourceTree = "<group>";
+		};
 		6F1FF7AA1970F47E00B345EF = {
 			isa = PBXGroup;
 			children = (
@@ -93,10 +106,11 @@
 			isa = PBXGroup;
 			children = (
 				6F1FF7BA1970F47E00B345EF /* AppDelegate.swift */,
-				6F1FF7BC1970F47E00B345EF /* Images.xcassets */,
 				6F1FF7BE1970F47E00B345EF /* MainMenu.xib */,
 				6F6CF757197248C100CE766E /* Models */,
+				6F16B34F1995FF66002B3B31 /* WelcomeView */,
 				6F1FF7E119710EE800B345EF /* ContentViewController */,
+				6F1FF7BC1970F47E00B345EF /* Images.xcassets */,
 				6F1FF7DC1970F6F400B345EF /* DuckDNS-Bridging-Header.h */,
 				6F1FF7E219710F0000B345EF /* AXStatusItemPopup */,
 				6F32A2711987A283007AABE9 /* Reachability */,
@@ -134,8 +148,8 @@
 		6F1FF7E119710EE800B345EF /* ContentViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6F1FF7DD1970FABB00B345EF /* ContentViewController.swift */,
 				6F1FF7DF197101EE00B345EF /* ContentViewController.xib */,
+				6F1FF7DD1970FABB00B345EF /* ContentViewController.swift */,
 			);
 			name = ContentViewController;
 			sourceTree = "<group>";
@@ -247,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F1FF7BD1970F47E00B345EF /* Images.xcassets in Resources */,
+				6F16B34E1995FF44002B3B31 /* WelcomeWindowView.xib in Resources */,
 				6F1FF7C01970F47E00B345EF /* MainMenu.xib in Resources */,
 				6F1FF7E0197101EE00B345EF /* ContentViewController.xib in Resources */,
 			);
@@ -267,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F1FF7DE1970FABB00B345EF /* ContentViewController.swift in Sources */,
+				6F16B3511995FF91002B3B31 /* WelcomeWindowViewController.swift in Sources */,
 				6F1FF7BB1970F47E00B345EF /* AppDelegate.swift in Sources */,
 				6F1FF7DB1970F58C00B345EF /* AXStatusItemPopup.m in Sources */,
 				6F6CF756197248AC00CE766E /* DuckDNSModel.swift in Sources */,

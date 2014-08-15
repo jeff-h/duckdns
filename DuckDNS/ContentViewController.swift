@@ -10,7 +10,7 @@ import Foundation
 
 class ContentViewController: NSViewController {
     let app = NSApplication.sharedApplication().delegate as AppDelegate
-    
+
     var statusItemPopup: AXStatusItemPopup?
     var duckDNSModel: DuckDNSModel
     
@@ -30,6 +30,11 @@ class ContentViewController: NSViewController {
         statusItemPopup?.hidePopover()
     }
     
+    required init(coder: NSCoder) {
+        println("nscoding init ran")
+        fatalError("NSCoding not supported")
+    }
+
     init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!, duckDNSModel: DuckDNSModel) {
         self.duckDNSModel = duckDNSModel
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -52,9 +57,11 @@ class ContentViewController: NSViewController {
         keyPath: String!,
         ofObject object: AnyObject!,
         change: [NSObject : AnyObject]!,
-        context: UnsafePointer<()>) {
+        context: UnsafeMutablePointer<()>) {
     
         println("came via observeValueForKeyPath")
+        println(keyPath)
+        println(change)
         self.updateLabel(alsoNotify: true);
     }
 

@@ -11,7 +11,7 @@ import Foundation
 class DuckDNSModel: NSObject {
     let app = NSApplication.sharedApplication().delegate as AppDelegate
     
-    init() {
+    override init() {
         super.init()
         
         // Watch for changes to specific defaults.
@@ -24,12 +24,14 @@ class DuckDNSModel: NSObject {
     
     // We'll be notified whenever NSUserDefault's domain, token or lastKnownIP
     // values changed.
-    override func observeValueForKeyPath(keyPath: String!,
+    override func observeValueForKeyPath(
+        keyPath: String!,
         ofObject object: AnyObject!,
         change: [NSObject : AnyObject]!,
-        context: UnsafePointer<()>) {
+        context: UnsafeMutablePointer<()>) {
         
         if (keyPath == "lastKnownIP") {
+            println("observed val change in lastKnownIP")
             println(change)
             self.sendIPChange()
         }
@@ -50,6 +52,7 @@ class DuckDNSModel: NSObject {
     }
     
     func setSuccess(success: Bool) {
+        println("Set updateSucceeded to \(success)")
         self.app.userDefaults.setValue(success, forKey: "updateSucceeded")
     }
     
@@ -58,9 +61,7 @@ class DuckDNSModel: NSObject {
     }
     
     func sendIPChange() {
-        // First, check whether our IP has actually changed.
-        let lastKnownIP = app.userDefaults.stringForKey("lastKnownIP")
-        
+        println("pinging Duck DNS")
         
         let domain = app.userDefaults.stringForKey("domain")
         let token  = app.userDefaults.stringForKey("token")

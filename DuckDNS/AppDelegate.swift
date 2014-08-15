@@ -16,7 +16,7 @@ class AppDelegate:  NSObject,
     var userNotifications = NSUserNotificationCenter.defaultUserNotificationCenter()
     var notificationCenter = NSNotificationCenter.defaultCenter()
     var statusItemPopup: AXStatusItemPopup?
-    var duckDNSModel: DuckDNSModel?
+    var duckDNSModel: DuckDNSModel!
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
@@ -35,20 +35,20 @@ class AppDelegate:  NSObject,
         
         // init the content view controller
         // which will be shown inside the popover.
-        let myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), duckDNSModel: self.duckDNSModel!)
+        let myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), duckDNSModel: self.duckDNSModel)
         
         // On every app first run, update Duck DNS.
-        self.duckDNSModel!.setCurrentIP()
+        self.duckDNSModel.setCurrentIP()
         
         // init the status item popup
         let image = NSImage(named: "cloud")
         let alternateImage = NSImage(named: "cloudgrey")
 
-        statusItemPopup = AXStatusItemPopup(viewController: myContentViewController, image: image, alternateImage: alternateImage);
+        self.statusItemPopup = AXStatusItemPopup(viewController: myContentViewController, image: image, alternateImage: alternateImage);
 
         // Give the contentview a reference to the popover to e.g. hide it from
         // there.
-        myContentViewController.statusItemPopup = statusItemPopup;
+        myContentViewController.statusItemPopup = self.statusItemPopup;
         
         // Set self as the user notifications centre delegate.
         userNotifications.delegate = self
@@ -64,12 +64,18 @@ class AppDelegate:  NSObject,
             name: kReachabilityChangedNotification,
             object: nil
         )
+        
+//        var welcomeWindow = WelcomeWindowViewController(windowNibName: "WelcomeWindowView")
+//        welcomeWindow.showWindow(self)
+//        println("just showed win")
+//        println(welcomeWindow.window)
+        
     }
     
     func reachabilityChanged(notification: NSNotification) {
         var reachability: Reachability = notification.object as Reachability
         if (reachability.isReachable()) {
-            self.duckDNSModel!.setCurrentIP()
+            self.duckDNSModel.setCurrentIP()
         }
     }
 
