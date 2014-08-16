@@ -40,7 +40,7 @@ class AppDelegate:  NSObject,
         // On every app first run, update Duck DNS.
         self.duckDNSModel.setCurrentIP()
         
-        // init the status item popup
+        // Initialise the status item popup.
         let image = NSImage(named: "cloud")
         let alternateImage = NSImage(named: "cloudgrey")
 
@@ -67,7 +67,7 @@ class AppDelegate:  NSObject,
         
 //        var welcomeWindow = WelcomeWindowViewController(windowNibName: "WelcomeWindowView")
 //        welcomeWindow.showWindow(self)
-//        println("just showed win")
+//        println("just did showWindow")
 //        println(welcomeWindow.window)
         
     }
@@ -81,6 +81,7 @@ class AppDelegate:  NSObject,
 
     func applicationWillTerminate(aNotification: NSNotification?) {
         // Insert code here to tear down your application
+        notificationCenter.removeObserver(self)
     }
 
     func userNotificationCenter(center: NSUserNotificationCenter!, shouldPresentNotification notification: NSUserNotification!) -> Bool {

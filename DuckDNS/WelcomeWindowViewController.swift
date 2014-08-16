@@ -19,4 +19,7 @@ class WelcomeWindowViewController: NSWindowController {
 //        println("initialising welcome view window 2")
 //    }
     
+    deinit {
+        println("WelcomeWindowViewController's deinit")
+    }
 }

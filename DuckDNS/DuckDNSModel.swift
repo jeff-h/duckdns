@@ -22,6 +22,13 @@ class DuckDNSModel: NSObject {
         app.userDefaults.addObserver(self, forKeyPath: "lastKnownIP",  options: options, context: nil)
     }
     
+    deinit {
+        println("here deinit")
+        app.userDefaults.removeObserver(self, forKeyPath: "domain")
+        app.userDefaults.removeObserver(self, forKeyPath: "token")
+        app.userDefaults.removeObserver(self, forKeyPath: "lastKnownIP")
+    }
+    
     // We'll be notified whenever NSUserDefault's domain, token or lastKnownIP
     // values changed.
     override func observeValueForKeyPath(

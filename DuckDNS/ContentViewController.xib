@@ -21,7 +21,7 @@
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cml-Ih-ej3">
                     <rect key="frame" x="20" y="97" width="48" height="48"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="0060535C-040A-495B-B7F3-A45EC61A87F1" id="36Y-12-4AQ"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="0522FC6E-9E03-4C33-A238-7AB0A30ECC51" id="36Y-12-4AQ"/>
                 </imageView>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YIu-x2-U1G">
                     <rect key="frame" x="128" y="127" width="92" height="22"/>
@@ -108,7 +108,7 @@ DQ
         </customView>
     </objects>
     <resources>
-        <image name="0060535C-040A-495B-B7F3-A45EC61A87F1" width="250" height="250">
+        <image name="0522FC6E-9E03-4C33-A238-7AB0A30ECC51" width="250" height="250">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

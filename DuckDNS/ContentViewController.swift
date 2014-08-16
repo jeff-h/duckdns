@@ -11,7 +11,7 @@ import Foundation
 class ContentViewController: NSViewController {
     let app = NSApplication.sharedApplication().delegate as AppDelegate
 
-    var statusItemPopup: AXStatusItemPopup?
+    var statusItemPopup: AXStatusItemPopup!
     var duckDNSModel: DuckDNSModel
     
     @IBOutlet var DomainTextField: NSTextField!
@@ -27,28 +27,38 @@ class ContentViewController: NSViewController {
     }
     
     @IBAction func OKButtonClicked(sender: AnyObject) {
-        statusItemPopup?.hidePopover()
+        statusItemPopup.hidePopover()
     }
     
     required init(coder: NSCoder) {
-        println("nscoding init ran")
         fatalError("NSCoding not supported")
     }
 
     init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!, duckDNSModel: DuckDNSModel) {
         self.duckDNSModel = duckDNSModel
+        
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
 
         // Watch for changes to the "updateSucceeded" default.
         let options : NSKeyValueObservingOptions = .New | .Old
         app.userDefaults.addObserver(self, forKeyPath: "updateSucceeded", options:options, context: nil)
 
-        println("came via awakeFromNib")
+        println("came into viewDidAppear")
         self.updateLabel(alsoNotify: false)
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        
+        app.userDefaults.removeObserver(self, forKeyPath: "updateSucceeded")
     }
     
     // The value for updateSucceeded was changed, most likely by the DuckDNS
@@ -59,7 +69,7 @@ class ContentViewController: NSViewController {
         change: [NSObject : AnyObject]!,
         context: UnsafeMutablePointer<()>) {
     
-        println("came via observeValueForKeyPath")
+        println("came into observeValueForKeyPath")
         println(keyPath)
         println(change)
         self.updateLabel(alsoNotify: true);
