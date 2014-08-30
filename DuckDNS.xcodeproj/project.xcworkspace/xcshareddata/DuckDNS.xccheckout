@@ -22,9 +22,9 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>7070BA961BCA286ED2393408B1E3D78393C99B33</key>
-		<string>../..Reachability/</string>
+		<string>../..Reachability</string>
 		<key>9248E923E409A8D8BCFB94CD3F2EE480CD7097AE</key>
-		<string>../..AXStatusItemPopup/</string>
+		<string>../..AXStatusItemPopup</string>
 		<key>A65604191EA989D3F43C56FFF664455DF04519E4</key>
 		<string>../..</string>
 	</dict>
@@ -40,14 +40,6 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9248E923E409A8D8BCFB94CD3F2EE480CD7097AE</string>
-			<key>IDESourceControlWCCName</key>
-			<string>AXStatusItemPopup</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>A65604191EA989D3F43C56FFF664455DF04519E4</string>
 			<key>IDESourceControlWCCName</key>
 			<string>DuckDNS</string>
@@ -56,9 +48,17 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9248E923E409A8D8BCFB94CD3F2EE480CD7097AE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DuckDNSAXStatusItemPopup</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>7070BA961BCA286ED2393408B1E3D78393C99B33</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Reachability</string>
+			<string>DuckDNSReachability</string>
 		</dict>
 	</array>
 </dict>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6205" systemVersion="14A299l" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329r" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6205"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ContentViewController" customModule="DuckDNS" customModuleProvider="target">
@@ -21,7 +21,7 @@
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cml-Ih-ej3">
                     <rect key="frame" x="20" y="97" width="48" height="48"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="0522FC6E-9E03-4C33-A238-7AB0A30ECC51" id="36Y-12-4AQ"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="F234366A-F04D-4278-B467-EDF25BAED9F8" id="36Y-12-4AQ"/>
                 </imageView>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YIu-x2-U1G">
                     <rect key="frame" x="128" y="127" width="92" height="22"/>
@@ -106,9 +106,19 @@ DQ
             </subviews>
             <point key="canvasLocation" x="29.5" y="102.5"/>
         </customView>
+        <viewController id="4pn-Jx-WNe" userLabel="Popover View Controller">
+            <connections>
+                <outlet property="view" destination="c22-O7-iKe" id="kuo-yg-hxo"/>
+            </connections>
+        </viewController>
+        <popover behavior="t" id="zdN-GZ-P3c">
+            <connections>
+                <outlet property="contentViewController" destination="4pn-Jx-WNe" id="nOH-wp-fpb"/>
+            </connections>
+        </popover>
     </objects>
     <resources>
-        <image name="0522FC6E-9E03-4C33-A238-7AB0A30ECC51" width="250" height="250">
+        <image name="F234366A-F04D-4278-B467-EDF25BAED9F8" width="250" height="250">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

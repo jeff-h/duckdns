@@ -12,11 +12,17 @@ class AppDelegate:  NSObject,
                     NSApplicationDelegate,
                     NSUserNotificationCenterDelegate {
     
+    // MARK:- Properties
+    
     var userDefaults = NSUserDefaults.standardUserDefaults()
     var userNotifications = NSUserNotificationCenter.defaultUserNotificationCenter()
     var notificationCenter = NSNotificationCenter.defaultCenter()
     var statusItemPopup: AXStatusItemPopup?
     var duckDNSModel: DuckDNSModel!
+    var myContentViewController: ContentViewController!
+    
+    
+    // MARK:- NSApplicationDelegate methods
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
@@ -31,11 +37,12 @@ class AppDelegate:  NSObject,
         userDefaults.registerDefaults(defaults)
                 
         // Init the models.
-        self.duckDNSModel = DuckDNSModel()
+        //self.duckDNSModel = DuckDNSModel()
+        self.duckDNSModel = NSKeyedUnarchiver.unarchiveObjectWithFile("gloppo77.data") as DuckDNSModel
         
         // init the content view controller
         // which will be shown inside the popover.
-        let myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), duckDNSModel: self.duckDNSModel)
+        myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), duckDNSModel: self.duckDNSModel)
         
         // On every app first run, update Duck DNS.
         self.duckDNSModel.setCurrentIP()
@@ -72,16 +79,21 @@ class AppDelegate:  NSObject,
         
     }
     
+    func applicationWillTerminate(aNotification: NSNotification?) {
+        // Insert code here to tear down your application
+        notificationCenter.removeObserver(self)
+        println("ran applicationWillTerminate")
+        duckDNSModel.save()
+    }
+
+    
+    // MARK:- Reachability and other delegate methods
+    
     func reachabilityChanged(notification: NSNotification) {
         var reachability: Reachability = notification.object as Reachability
         if (reachability.isReachable()) {
             self.duckDNSModel.setCurrentIP()
         }
-    }
-
-    func applicationWillTerminate(aNotification: NSNotification?) {
-        // Insert code here to tear down your application
-        notificationCenter.removeObserver(self)
     }
 
     func userNotificationCenter(center: NSUserNotificationCenter!, shouldPresentNotification notification: NSUserNotification!) -> Bool {
