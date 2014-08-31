@@ -21,7 +21,7 @@
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cml-Ih-ej3">
                     <rect key="frame" x="20" y="97" width="48" height="48"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="F234366A-F04D-4278-B467-EDF25BAED9F8" id="36Y-12-4AQ"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="B48BF935-4AA0-4D09-80FE-025C2CB764CF" id="36Y-12-4AQ"/>
                 </imageView>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YIu-x2-U1G">
                     <rect key="frame" x="128" y="127" width="92" height="22"/>
@@ -32,7 +32,6 @@
                     </textFieldCell>
                     <connections>
                         <action selector="DomainTextFieldAction:" target="-2" id="fbE-uu-Qbl"/>
-                        <binding destination="dMj-xg-vme" name="value" keyPath="values.domain" id="cZk-J0-OEV"/>
                         <outlet property="delegate" destination="-2" id="Zcd-ZM-HwX"/>
                     </connections>
                 </textField>
@@ -118,7 +117,7 @@ DQ
         </popover>
     </objects>
     <resources>
-        <image name="F234366A-F04D-4278-B467-EDF25BAED9F8" width="250" height="250">
+        <image name="B48BF935-4AA0-4D09-80FE-025C2CB764CF" width="250" height="250">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

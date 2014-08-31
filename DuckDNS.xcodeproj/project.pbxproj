@@ -53,6 +53,7 @@
 		6F32A26F1987A268007AABE9 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = SOURCE_ROOT; };
 		6F32A2721989FABA007AABE9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6F6CF755197248AC00CE766E /* DuckDNSModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuckDNSModel.swift; sourceTree = "<group>"; };
+		6FF95D7619B2A46200580141 /* DuckDNS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DuckDNS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +106,7 @@
 		6F1FF7B51970F47E00B345EF /* DuckDNS */ = {
 			isa = PBXGroup;
 			children = (
+				6FF95D7619B2A46200580141 /* DuckDNS.entitlements */,
 				6F1FF7BA1970F47E00B345EF /* AppDelegate.swift */,
 				6F1FF7BE1970F47E00B345EF /* MainMenu.xib */,
 				6F6CF757197248C100CE766E /* Models */,
@@ -229,6 +231,11 @@
 				TargetAttributes = {
 					6F1FF7B21970F47E00B345EF = {
 						CreatedOnToolsVersion = 6.0;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					6F1FF7C41970F47F00B345EF = {
 						CreatedOnToolsVersion = 6.0;
@@ -402,6 +409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DuckDNS/DuckDNS.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DuckDNS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -414,6 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DuckDNS/DuckDNS.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DuckDNS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

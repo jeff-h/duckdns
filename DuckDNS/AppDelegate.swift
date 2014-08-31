@@ -14,38 +14,28 @@ class AppDelegate:  NSObject,
     
     // MARK:- Properties
     
-    var userDefaults = NSUserDefaults.standardUserDefaults()
+//    var userDefaults = NSUserDefaults.standardUserDefaults()
     var userNotifications = NSUserNotificationCenter.defaultUserNotificationCenter()
     var notificationCenter = NSNotificationCenter.defaultCenter()
     var statusItemPopup: AXStatusItemPopup?
     var duckDNSModel: DuckDNSModel!
     var myContentViewController: ContentViewController!
     
+    let modelDataPath: String = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true)[0] as String + "/data.archive"
+    
     
     // MARK:- NSApplicationDelegate methods
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
-        // Insert code here to initialize your application
+        // Initialise the models.
+        self.duckDNSModel = loadModel()
         
-        // Register some defaults for first-run.
-        let defaults = [
-            "lastKnownIP":"",
-            "domain":"",
-            "token": "",
-            "updateSucceeded": false
-        ]
-        userDefaults.registerDefaults(defaults)
-                
-        // Init the models.
-        //self.duckDNSModel = DuckDNSModel()
-        self.duckDNSModel = NSKeyedUnarchiver.unarchiveObjectWithFile("gloppo77.data") as DuckDNSModel
-        
-        // init the content view controller
-        // which will be shown inside the popover.
+        // init the content view controller which will be shown inside the
+        // popover.
         myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), duckDNSModel: self.duckDNSModel)
         
-        // On every app first run, update Duck DNS.
-        self.duckDNSModel.setCurrentIP()
+        // Update Duck DNS each time the app is opened.
+        self.duckDNSModel.updateCheck()
         
         // Initialise the status item popup.
         let image = NSImage(named: "cloud")
@@ -63,8 +53,9 @@ class AppDelegate:  NSObject,
         var reachability = Reachability(hostName: "www.google.com")
         reachability.startNotifier()
 
-        // Start watching Reachability now that it's started above, to avoid
-        // being notified when it first sees us online.
+        // Start watching Reachability now that it's started above. We do it in
+        // this order in order to avoid being notified when reachability first
+        //sees us online.
         notificationCenter.addObserver(
             self,
             selector: "reachabilityChanged:",
@@ -81,18 +72,23 @@ class AppDelegate:  NSObject,
     
     func applicationWillTerminate(aNotification: NSNotification?) {
         // Insert code here to tear down your application
+
         notificationCenter.removeObserver(self)
-        println("ran applicationWillTerminate")
-        duckDNSModel.save()
+        
+        saveModel(duckDNSModel)
     }
 
     
     // MARK:- Reachability and other delegate methods
     
     func reachabilityChanged(notification: NSNotification) {
-        var reachability: Reachability = notification.object as Reachability
+        var reachability = notification.object as Reachability
+        println("Reachability Changed")
+        println(reachability)
+        
+        // If we've become reachable again, then update Duck.
         if (reachability.isReachable()) {
-            self.duckDNSModel.setCurrentIP()
+            self.duckDNSModel.updateCheck()
         }
     }
 
@@ -101,6 +97,9 @@ class AppDelegate:  NSObject,
         // is active.
         return false
     }
+    
+    
+    // MARK:- Other functions
     
     func sendNotification(#title: String, body: String) {
         var notification = NSUserNotification()
@@ -111,5 +110,22 @@ class AppDelegate:  NSObject,
         
         userNotifications.deliverNotification(notification)
     }
+
+    func loadModel() ->DuckDNSModel {
+        var model = NSKeyedUnarchiver.unarchiveObjectWithFile(modelDataPath) as DuckDNSModel?
+        
+        if model == nil {
+            model = DuckDNSModel()
+        }
+        
+        return model!
+    }
+    
+    func saveModel(duckDNSModel: DuckDNSModel) ->Bool {
+        let success = NSKeyedArchiver.archiveRootObject(duckDNSModel, toFile: modelDataPath)
+        
+        return success
+    }
+    
 }
 
