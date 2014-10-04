@@ -18,24 +18,15 @@ class AppDelegate:  NSObject,
     var userNotifications = NSUserNotificationCenter.defaultUserNotificationCenter()
     var notificationCenter = NSNotificationCenter.defaultCenter()
     var statusItemPopup: AXStatusItemPopup?
-    var duckDNSModel: DuckDNSModel!
     var myContentViewController: ContentViewController!
-    
-    let modelDataPath: String = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true)[0] as String + "/data.archive"
     
     
     // MARK:- NSApplicationDelegate methods
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
-        // Initialise the models.
-        self.duckDNSModel = loadModel()
-        
         // init the content view controller which will be shown inside the
         // popover.
-        myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), duckDNSModel: self.duckDNSModel)
-        
-        // Update Duck DNS each time the app is opened.
-        self.duckDNSModel.updateCheck()
+        myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle())
         
         // Initialise the status item popup.
         let image = NSImage(named: "cloud")
@@ -51,18 +42,14 @@ class AppDelegate:  NSObject,
         userNotifications.delegate = self
         
         var reachability = Reachability(hostName: "www.google.com")
-        reachability.startNotifier()
-
-        // Start watching Reachability now that it's started above. We do it in
-        // this order in order to avoid being notified when reachability first
-        //sees us online.
         notificationCenter.addObserver(
             self,
             selector: "reachabilityChanged:",
             name: kReachabilityChangedNotification,
             object: nil
         )
-        
+        reachability.startNotifier()
+
 //        var welcomeWindow = WelcomeWindowViewController(windowNibName: "WelcomeWindowView")
 //        welcomeWindow.showWindow(self)
 //        println("just did showWindow")
@@ -75,7 +62,7 @@ class AppDelegate:  NSObject,
 
         notificationCenter.removeObserver(self)
         
-        saveModel(duckDNSModel)
+        DuckDNSModel.sharedInstance.saveModel()
     }
 
     
@@ -84,11 +71,11 @@ class AppDelegate:  NSObject,
     func reachabilityChanged(notification: NSNotification) {
         var reachability = notification.object as Reachability
         println("Reachability Changed")
-        println(reachability)
         
         // If we've become reachable again, then update Duck.
         if (reachability.isReachable()) {
-            self.duckDNSModel.updateCheck()
+            println("Reachability available")
+            DuckDNSModel.sharedInstance.fetchPublicIP()
         }
     }
 
@@ -109,23 +96,6 @@ class AppDelegate:  NSObject,
         notification.soundName = NSUserNotificationDefaultSoundName
         
         userNotifications.deliverNotification(notification)
-    }
-
-    func loadModel() ->DuckDNSModel {
-        var model = NSKeyedUnarchiver.unarchiveObjectWithFile(modelDataPath) as DuckDNSModel?
-        
-        if model == nil {
-            model = DuckDNSModel()
-        }
-        
-        return model!
-    }
-    
-    func saveModel(duckDNSModel: DuckDNSModel) ->Bool {
-        let success = NSKeyedArchiver.archiveRootObject(duckDNSModel, toFile: modelDataPath)
-        
-        return success
-    }
-    
+    }    
 }
 

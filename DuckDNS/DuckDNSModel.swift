@@ -8,42 +8,80 @@
 
 import Foundation
 
-class DuckDNSModel: NSObject, NSCoding {
+
+protocol DuckDNSModelDelegate {
+    func willCheckExternalIP()
+    func  didCheckExternalIP(ip: String)
+    
+    func willUpdateDuckDNS()
+    func didUpdateDuckDNS(success: Bool)
+}
+
+public class DuckDNSModel: NSObject, NSCoding {
     
     // MARK:- Properties
 
-    var domain:  String = "" {
+    var delegate: DuckDNSModelDelegate? = nil
+    
+    public var domain: String = "" {
         didSet {
-            println("Just changed domain from \(oldValue) to \(domain)")
+            self.updateDuckDNS()
         }
     }
     
-    var token:   String = "" {
+    public var token: String = "" {
         didSet {
-            println("Just changed token from \(oldValue) to \(token)")
+            self.updateDuckDNS()
         }
     }
     
-    var lastKnownIP: String = "" {
+    public var lastKnownIP: String = "" {
         didSet {
-            println("Just changed lastKnownIP from \(oldValue) to \(lastKnownIP)")
+            // If our external IP has changed, ping Duck DNS.
+            if lastKnownIP != oldValue {
+                self.updateDuckDNS()
+            }
         }
     }
     
-    var success: Bool = false {
+    public var success: Bool = false {
         didSet {
-            println("Just changed domain from \(oldValue) to \(success)")
+            println("Just changed success from \(oldValue) to \(success)")
         }
     }
     
+    class var modelDataPath: String {
+        return NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true)[0] as String + "/data.archive"
+    }
+
+    
+    // MARK:- Singleton
+    
+    public class var sharedInstance: DuckDNSModel {
+        struct Singleton {
+            static var onceToken : dispatch_once_t = 0
+            static var instance : DuckDNSModel? = nil
+        }
+        
+        dispatch_once(&Singleton.onceToken) {
+            Singleton.instance = NSKeyedUnarchiver.unarchiveObjectWithFile(self.modelDataPath) as DuckDNSModel?
+            
+            if Singleton.instance == nil {
+                Singleton.instance = DuckDNSModel()
+            }
+        }
+        
+        return Singleton.instance!
+    }
     
     
     // MARK:- Initialisers and encoding
+    
     override init() {
         super.init()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init()
 
         domain      = aDecoder.decodeObjectForKey("domain") as String
@@ -51,64 +89,69 @@ class DuckDNSModel: NSObject, NSCoding {
         lastKnownIP = aDecoder.decodeObjectForKey("lastKnownIP") as String
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    public func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(domain,       forKey: "domain")
         aCoder.encodeObject(token,        forKey: "token")
         aCoder.encodeObject(lastKnownIP,  forKey: "lastKnownIP")
     }
+        
     
-    deinit {
-        println("ran deinit")
+    // MARK:- Load & save
+    
+    private func loadModel() -> DuckDNSModel {
+        var model = NSKeyedUnarchiver.unarchiveObjectWithFile(DuckDNSModel.modelDataPath) as DuckDNSModel?
+        
+        if model == nil {
+            model = DuckDNSModel()
+        }
+        
+        return model!
     }
     
+    public func saveModel() -> Bool {
+        let success = NSKeyedArchiver.archiveRootObject(
+            DuckDNSModel.sharedInstance,
+            toFile: DuckDNSModel.modelDataPath
+        )
+
+        return success
+    }
+
     
     // MARK:- Helper functions
     
-    func credentialsChanged() {
-        println("creds changed")
-        self.updateCheck()
-    }
-    
-    func updateCheck() {
-        // Only continue if the token and domain credentials are available.
-        if self.domain != "" && self.token != "" {
-            // Ping the external IP website to see if our external IP has
-            // actually changed.
-            var currentIP = fetchPublicIP()
-            if currentIP != lastKnownIP {
-                // If our external IP has changed, store it, then ping Duck DNS.
-                self.lastKnownIP = currentIP
-                
-                println("pinging Duck DNS")
-                self.success = updateDuckDNS()
-            }
-        }
-    }
-    
     // Get the public IP. Return "" if the request fails.
-    func fetchPublicIP() ->String {
+    func fetchPublicIP() {
         var resultString = ""
         
+        delegate?.willCheckExternalIP()
+
         // Fetch public IP from http://echoip.net
-        let url = NSURL(string: "http://echoip.net")
+        let url = NSURL(string: "http://echoip.net")!
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
-            resultString = (NSString(data: data, encoding: NSUTF8StringEncoding))
+            
+            resultString = (NSString(data: data, encoding: NSUTF8StringEncoding))!
+            self.lastKnownIP = resultString
+            self.delegate?.didCheckExternalIP(resultString)
         }
         task.resume()
-        
-        return resultString
     }
 
-    func updateDuckDNS() -> Bool {
-        var success = false
-        let url = NSURL(string: "https://www.duckdns.org/update?domains=" + domain + "&token=" + token + "&ip=")
-        
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
-            let resultString = (NSString(data: data, encoding: NSUTF8StringEncoding))
-            success = (resultString == "OK")
+    func updateDuckDNS() {
+        // Only continue if the token, domain and IP are available.
+        if self.domain != "" && self.token != "" && self.lastKnownIP != "" {
+            delegate?.willUpdateDuckDNS()
+
+            let url = NSURL(string: "https://www.duckdns.org/update?domains=" + domain + "&token=" + token + "&ip=")!
+            
+            let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
+                
+                let resultString = (NSString(data: data, encoding: NSUTF8StringEncoding))
+                self.success = (resultString == "OK")
+                self.delegate?.didUpdateDuckDNS(self.success)
+            }
+            
+            task.resume()
         }
-        task.resume()
-        
-        return success
     }
 }

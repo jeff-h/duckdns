@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329r" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="14A361p" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ContentViewController" customModule="DuckDNS" customModuleProvider="target">
@@ -9,6 +10,7 @@
                 <outlet property="DomainTextField" destination="aNk-hU-bfE" id="qI9-7R-y6y"/>
                 <outlet property="StatusLabel" destination="bSZ-ee-mUJ" id="Vqc-jp-vOH"/>
                 <outlet property="TokenTextField" destination="aNk-hU-bfE" id="GEw-tD-fdM"/>
+                <outlet property="progressSpinner" destination="mB7-2D-ady" id="C4U-Qf-Txp"/>
                 <outlet property="view" destination="c22-O7-iKe" id="QPy-cN-4zi"/>
             </connections>
         </customObject>
@@ -21,7 +23,7 @@
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cml-Ih-ej3">
                     <rect key="frame" x="20" y="97" width="48" height="48"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="B48BF935-4AA0-4D09-80FE-025C2CB764CF" id="36Y-12-4AQ"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="B7DFB783-414F-4AD9-BE9B-2C027C4AE7C0" id="36Y-12-4AQ"/>
                 </imageView>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YIu-x2-U1G">
                     <rect key="frame" x="128" y="127" width="92" height="22"/>
@@ -32,6 +34,7 @@
                     </textFieldCell>
                     <connections>
                         <action selector="DomainTextFieldAction:" target="-2" id="fbE-uu-Qbl"/>
+                        <binding destination="-2" name="value" keyPath="thingy.domain" id="ZA7-Mz-YBX"/>
                         <outlet property="delegate" destination="-2" id="Zcd-ZM-HwX"/>
                     </connections>
                 </textField>
@@ -60,7 +63,7 @@
                     </textFieldCell>
                     <connections>
                         <action selector="TokenTextFieldAction:" target="-2" id="SUY-Il-X4u"/>
-                        <binding destination="dMj-xg-vme" name="value" keyPath="values.token" id="Jd7-oq-bpi"/>
+                        <binding destination="-2" name="value" keyPath="thingy.token" id="s1g-CS-gYN"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDx-Vh-LSi">
@@ -102,6 +105,9 @@ DQ
                         <action selector="terminate:" target="-3" id="3FI-Na-TGx"/>
                     </connections>
                 </button>
+                <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="mB7-2D-ady">
+                    <rect key="frame" x="104" y="71" width="16" height="16"/>
+                </progressIndicator>
             </subviews>
             <point key="canvasLocation" x="29.5" y="102.5"/>
         </customView>
@@ -117,7 +123,7 @@ DQ
         </popover>
     </objects>
     <resources>
-        <image name="B48BF935-4AA0-4D09-80FE-025C2CB764CF" width="250" height="250">
+        <image name="B7DFB783-414F-4AD9-BE9B-2C027C4AE7C0" width="250" height="250">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

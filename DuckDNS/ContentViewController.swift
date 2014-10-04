@@ -8,18 +8,16 @@
 
 import Foundation
 
-class ContentViewController: NSViewController {
+class ContentViewController: NSViewController, DuckDNSModelDelegate {
     
     // MARK:- Properties
-    
+        
     var statusItemPopup: AXStatusItemPopup!
-//    var duckDNSModel: DuckDNSModel
-    
-    var jeff: String = "klj"
     
     @IBOutlet var DomainTextField: NSTextField!
     @IBOutlet var TokenTextField: NSTextField!
     @IBOutlet weak var StatusLabel: NSTextField?
+    @IBOutlet var progressSpinner: NSProgressIndicator?
     
     @IBAction func DomainTextFieldAction(sender: AnyObject) {
 //        app.userDefaults.synchronize()
@@ -30,8 +28,11 @@ class ContentViewController: NSViewController {
     }
     
     @IBAction func OKButtonClicked(sender: AnyObject) {
-        statusItemPopup.hidePopover()
+        DuckDNSModel.sharedInstance.saveModel()
+        statusItemPopup.hidePopover()        
     }
+    
+    var thingy: DuckDNSModel = DuckDNSModel.sharedInstance
     
     
     // MARK:- Initialisation
@@ -39,21 +40,25 @@ class ContentViewController: NSViewController {
     required init(coder: NSCoder) {
         fatalError("NSCoding not supported")
     }
-
-    init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!, duckDNSModel: DuckDNSModel) {
-//        self.duckDNSModel = duckDNSModel
-        
+    
+    override init?(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        println("init ran")
+        
+        DuckDNSModel.sharedInstance.delegate = self
     }
     
     
     // MARK:- Delegate functions
     
     override func viewDidLoad() {
+        println("view did load")
         super.viewDidLoad()
     }
     
     override func viewDidAppear() {
+        println("view did appear")
         super.viewDidAppear()
 
         // Watch for changes to the "updateSucceeded" default.
@@ -82,15 +87,15 @@ class ContentViewController: NSViewController {
 //        self.updateLabel(alsoNotify: true);
 //    }
     
-    func successChanged(success: Bool, duckDNSModel: DuckDNSModel) {
-        updateLabel(duckDNSModel, alsoNotify: true)
+    func successChanged(success: Bool) {
+        updateLabel(true)
     }
 
-    func updateLabel(duckDNSModel: DuckDNSModel, alsoNotify: Bool) {
+    func updateLabel(alsoNotify: Bool) {
         var msg: String
         
-        if duckDNSModel.success {
-            msg = "Successfully synchronised with DuckDNS. Your public IP is now " + duckDNSModel.lastKnownIP
+        if DuckDNSModel.sharedInstance.success {
+            msg = "Successfully synchronised with DuckDNS. Your public IP is now " + DuckDNSModel.sharedInstance.lastKnownIP
         }
         else {
             msg = "Syncronisation failed. Please check your domain and token."
@@ -102,4 +107,51 @@ class ContentViewController: NSViewController {
 // @todo            NSApplication.sharedApplication().sendNotification(title: "Duck DNS", body: msg)
         }
     }
+    
+    
+    // MARK: DuckDNSModelDelegate
+    
+    func willCheckExternalIP() {
+        println("CAME HERE!!! willCheckExternalIP")
+        progressSpinner?.hidden = false
+        progressSpinner?.startAnimation(self)
+        
+        self.StatusLabel?.stringValue = "Checking external IP address."
+    }
+
+    func didCheckExternalIP(ip: String) {
+        println("CAME HERE!!! DID CheckExternalIP: \(ip)")
+        progressSpinner?.stopAnimation(self)
+        progressSpinner?.hidden = true
+        
+        if ip != "" {
+            self.StatusLabel?.stringValue = "External IP address is \(ip)"
+        }
+    }
+    
+    func willUpdateDuckDNS() {
+        println("CAME HERE!!! willUpdateDuckDNS")
+        progressSpinner?.startAnimation(self)
+        progressSpinner?.hidden = false
+        
+        if self.StatusLabel != nil {
+            self.StatusLabel!.stringValue = "Updating IP with Duck DNS"
+        }
+    }
+
+    func didUpdateDuckDNS(success: Bool) {
+        println("Finished DNS Update - Success was \(success)")
+        progressSpinner?.stopAnimation(self)
+        progressSpinner?.hidden = true
+        
+        let ip = thingy.lastKnownIP
+        
+        if success {
+            self.StatusLabel?.stringValue = "Duck DNS successfully updated. External IP address is \(ip)"
+        }
+        else {
+            self.StatusLabel?.stringValue = "Duck DNS was not successfully updated. Please check your domain and token."
+        }
+    }
+    
 }
