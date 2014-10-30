@@ -32,9 +32,8 @@ class ContentViewController: NSViewController, DuckDNSModelDelegate {
         statusItemPopup.hidePopover()        
     }
     
-    var thingy: DuckDNSModel = DuckDNSModel.sharedInstance
-    
-    
+    var model: DuckDNSModel = DuckDNSModel.sharedInstance
+
     // MARK:- Initialisation
     
     required init(coder: NSCoder) {
@@ -127,6 +126,9 @@ class ContentViewController: NSViewController, DuckDNSModelDelegate {
         if ip != "" {
             self.StatusLabel?.stringValue = "External IP address is \(ip)"
         }
+        else {
+            self.StatusLabel?.stringValue = "External IP could not be determined"
+        }
     }
     
     func willUpdateDuckDNS() {
@@ -144,14 +146,30 @@ class ContentViewController: NSViewController, DuckDNSModelDelegate {
         progressSpinner?.stopAnimation(self)
         progressSpinner?.hidden = true
         
-        let ip = thingy.lastKnownIP
+        let ip = DuckDNSModel.sharedInstance.lastKnownIP
         
         if success {
-            self.StatusLabel?.stringValue = "Duck DNS successfully updated. External IP address is \(ip)"
+            var msgStr: String = "Duck DNS was successfully updated. Your external IP address is now \(ip)"
+            
+            self.StatusLabel?.stringValue = msgStr
+            sendUserNotification(title: "Duck DNS", body: msgStr)
         }
         else {
-            self.StatusLabel?.stringValue = "Duck DNS was not successfully updated. Please check your domain and token."
+            self.StatusLabel?.stringValue = "Duck DNS was not successfully updated. Please check you have entered the correct domain and token."
         }
     }
     
+    
+    
+    // MARK: Helpers
+ 
+    func sendUserNotification(#title: String, body: String) {
+        var notification = NSUserNotification()
+        
+        notification.title = title
+        notification.informativeText = body;
+        notification.soundName = NSUserNotificationDefaultSoundName
+        
+        NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
+    }
 }

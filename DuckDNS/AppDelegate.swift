@@ -84,18 +84,5 @@ class AppDelegate:  NSObject,
         // is active.
         return false
     }
-    
-    
-    // MARK:- Other functions
-    
-    func sendNotification(#title: String, body: String) {
-        var notification = NSUserNotification()
-        
-        notification.title = title
-        notification.informativeText = body;
-        notification.soundName = NSUserNotificationDefaultSoundName
-        
-        userNotifications.deliverNotification(notification)
-    }    
 }
 

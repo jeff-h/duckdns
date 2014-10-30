@@ -130,6 +130,8 @@ public class DuckDNSModel: NSObject, NSCoding {
         let url = NSURL(string: "http://echoip.net")!
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
             
+            println("error code \(error)")
+            
             resultString = (NSString(data: data, encoding: NSUTF8StringEncoding))!
             self.lastKnownIP = resultString
             self.delegate?.didCheckExternalIP(resultString)
@@ -145,6 +147,10 @@ public class DuckDNSModel: NSObject, NSCoding {
             let url = NSURL(string: "https://www.duckdns.org/update?domains=" + domain + "&token=" + token + "&ip=")!
             
             let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
+                
+                if (error != nil) {
+                    println("Error received: \(error)")
+                }
                 
                 let resultString = (NSString(data: data, encoding: NSUTF8StringEncoding))
                 self.success = (resultString == "OK")
